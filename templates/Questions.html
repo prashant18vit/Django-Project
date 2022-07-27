@@ -1,0 +1,140 @@
+{% extends 'base.html' %}{% block content %} {% for ques in questions %}
+<h1><td>{{ques.domainStrategy}}</td></h1>
+
+<div class="col-lg-B border-success p-4 m-4 mx-auto">
+  <form method="POST" type = "Submit">
+    {% csrf_token %}
+    <tr class="{% cycle 'row1' 'row2' %}">
+    <tr> <input type= "hidden" name = "Question"  value ="{{ques.questionsToAddStrategy}}">{{ques.priorityStrategy}}){{ques.questionsToAddStrategy}}</input></td>
+    "{% if ques.OptionsOneStrategy != None %}
+    <div class="radio">
+      <label
+        ><input
+          type="radio"
+          id="Option1"
+          name="option"
+          onclick="document.getElementById('Option1').click()"          
+          value="{{ques.OptionsOneValueStrategy}}"
+        />{{ques.OptionsOneStrategy}}</label
+      >
+      
+    </div>
+    {% endif %} {% if ques.OptionsTwoStrategy != None %}
+    <div class="radio">
+      <label
+        ><input
+          type="radio"
+          id="Option2"
+          name="option"
+          value="{{ques.OptionsTwoValueStrategy}}"
+        />{{ques.OptionsTwoStrategy}}</label
+      >
+    </div>
+    {% endif %} {% if ques.OptionsThreeStrategy != None %}
+    <div class="radio">
+      <label
+        ><input
+          type="radio"
+          id="Option3"
+          name="option"
+          value="{{ques.OptionsThreeValueStrategy}}"
+        />{{ques.OptionsThreeStrategy}}</label
+      >
+    </div>
+    {% endif %} {% if ques.OptionsFourStrategy != None %}
+    <div class="radio">
+      <label
+        ><input
+          type="radio"
+          id="Option4"
+          name="option"
+          value="{{ques.OptionsFourValueStrategy}}"
+        />{{ques.OptionsFourStrategy}}</label
+      >
+    </div>
+    {% endif %} {% if ques.OptionsFiveStrategy != None %}
+    <div class="radio">
+      <label
+        ><input
+          type="radio"
+          id="Option5"
+          name="option"
+          value="{{ques.OptionsFiveValueStrategy}}"
+        />{{ques.OptionsFiveStrategy}}</label
+      >
+    </div>
+    {% endif %} {% if ques.OptionsSixStrategy != None %}
+    <div class="radio">
+      <label
+        ><input
+          type="radio"
+          id="Option6"
+          name="option"
+          value="{{ques.OptionsSixValueStrategy}}"
+        />{{ques.OptionsSixStrategy}}</label
+      >
+    </div>
+    {% endif %}
+  
+</div>
+<div class="form-group">
+  <button type="Submit" class="btn btn-primary" id="save_ans" href = "saveans/{{ques.questionsToAddStrategy}}">Save</button>
+</div>
+</form>
+{% endfor %}
+
+<div class="paginator">
+  <div class="form-group">
+    {% if questions.has_next %}
+    <a href="?page = {{questions.next_page_number }}"
+      ><button class="btn form-control btn-primary"></button></a
+    >
+    {% else %}
+    <a href="/result" class="btn form-control btn-primary" id="submitAnswer"
+      >Submit<button></button
+    ></a>
+    {% endif %}
+  </div>
+  <div>
+  <span class="form-group d-flex justify-content-center">
+        {% if questions.has_previous %}
+            <a href="?page=1""><button class = "btn  btn-danger p-4 m-4">&laquosubsave_ansmitAnswer; first</button></a>
+            <a href = "?page={{questions.previous_page_number }}"><button class = "btn  btn-danger p-4 m-4">Prevous</button></a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+        </span>
+
+        {% if questions.has_next %}
+            <a href = "?page={{questions.next_page_number }}"><button onclick="document.getElementById('save_ans').click()" class = "btn  btn-primary p-4 m-4">Next</button></a>
+            <a href="?page={{ questions.paginator.num_pages }}"><button class = "btn  btn-primary p-4 m-4">last &raquo;</button></a>
+        {% else %}
+                    <a href = "saveans" class = "btn  btn-warning p-4 m-4" id = "submitAnswer">Submit<button></button></a>
+        
+        {% endif %}
+  </div>
+</div>
+<script>
+  window.onload = initall;
+
+  var saveansBtn;
+  function initall() {
+    saveansBtn = document.getElementById("save_ans");
+    saveansBtn.onclick = saveans;
+    console.log("NOTHING STILL");
+  }
+
+  function saveans(e) {
+    e.preventDefault();
+    var ans = $("input:radio[name=option]:checked").val();
+    alert("ans is submitted");
+    var req = new XMLHttpRequest();
+
+    var URL = "/saveans?ans=" + ans;
+    req.open("GET", URL);
+    req.send();
+  }
+</script>
+
+{% endblock %}

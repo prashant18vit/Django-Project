@@ -1,0 +1,105 @@
+{% extends 'base.html' %} {% block content %}{% load crispy_forms_tags %}
+
+<div>
+  <div>
+    <div>
+      <div class="col-lg-4 mx-text-left shadow p-10">
+        <div class="alert alert-info">
+          <h2>Add New Question ( Strategy )</h2>
+        </div>
+        <div class="p-4">
+          <form action="/StrategyHome" method="POST">
+            {% csrf_token %} {{formStr | crispy}}
+            <hr />
+            <input
+              type="submit"
+              value="ADD"
+              class="btn btn-info"
+              name="Submit Changes"
+            />
+          </form>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="border">
+          <div>
+            <table
+              class="
+                table
+                text-xs-right
+                table-hover table-bordered
+                border border-dark
+              "
+            >
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Domain</th>
+                  <th>Priority</th>
+                  <th>Question</th>
+                  <th>Question Type</th>
+                  <th>Question text</th>
+                  <th>Option 1</th>
+                  <th>Option_1_Value</th>
+                  <th>Option 2</th>
+                  <th>Option_2_Value</th>
+                  <th>Option 3</th>
+                  <th>Option_3_Value</th>
+                  <th>Option 4</th>
+                  <th>Option_4_Value</th>
+                  <th>Option 5</th>
+                  <th>Option_5_Value</th>
+                  <th>Option 6</th>
+                  <th>Option_6_Value</th>
+                  <th>Delete</th>
+                  <th>Update</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for ques in FormStrategy %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{ques.domainStrategy}}</td>
+                  <td>{{ques.priorityStrategy}}</td>
+                  <td>{{ques.questionsToAddStrategy}}</td>
+                  <td>{{ques.questionType}}</td>
+                  <td>{{ques.question_text}}</td>
+
+                  <td>{{ques.OptionsOneStrategy}}</td>
+                  <td>{{ques.OptionsOneValueStrategy}}</td>
+                  <td>{{ques.OptionsTwoStrategy}}</td>
+                  <td>{{ques.OptionsTwoValueStrategy}}</td>
+                  <td>{{ques.OptionsThreeStrategy}}</td>
+                  <td>{{ques.OptionsThreeValueStrategy}}</td>
+                  <td>{{ques.OptionsFourStrategy}}</td>
+                  <td>{{ques.OptionsFourValueStrategy}}</td>
+                  <td>{{ques.OptionsFiveStrategy}}</td>
+                  <td>{{ques.OptionsFiveValueStrategy}}</td>
+                  <td>{{ques.OptionsSixStrategy}}</td>
+                  <td>{{ques.OptionsSixValueStrategy}}</td>
+
+                  <td>
+                    <a
+                      href="/delete_ques_stra/{{ques.id}}"
+                      class="btn btn-danger"
+                      >Delete</a
+                    >
+                  </td>
+                  <td>
+                    <a class="btn btn-primary" href="/updatestra/{{ques.id}}"
+                      >Update</a
+                    >
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

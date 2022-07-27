@@ -1,0 +1,95 @@
+{% extends 'base.html' %} {% block content %}{% load crispy_forms_tags %}
+
+<div>
+  <div>
+    <div>
+      <div class="col-lg-4 mx-text-left shadow p-10">
+        <div class="alert alert-info">
+          <h2>Add New Question ( marketing )</h2>
+        </div>
+        <div class="p-4">
+          <form action="/MarketingHome" method="POST">
+            {% csrf_token %} {{form | crispy}}
+            <hr />
+            <input type="submit" value="ADD" class="btn btn-info" />
+          </form>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="border">
+          <div>
+            <table class="table text-xs-left">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Domain</th>
+                  <th>Priority</th>
+                  <th>Question</th>
+                  <th>Question Type</th>
+                  <th>Question text</th>
+                  <th>Option 1</th>
+                  <th>Option_1_Value</th>
+                  <th>Option 2</th>
+                  <th>Option_2_Value</th>
+                  <th>Option 3</th>
+                  <th>Option_3_Value</th>
+                  <th>Option 4</th>
+                  <th>Option_4_Value</th>
+                  <th>Option 5</th>
+                  <th>Option_5_Value</th>
+                  <th>Option 6</th>
+                  <th>Option_6_Value</th>
+                  <th>Delete</th>
+                  <th>Update</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {% for ques in FormModel %}
+                <tr>
+                  <td>{{forloop.counter}}</td>
+                  <td>{{ques.domain}}</td>
+                  <td>{{ques.priority}}</td>
+                  <td>{{ques.questionsToAdd}}</td>
+                  <td>{{ques.questionType}}</td>
+                  <td>{{ques.question_text}}</td>
+
+                  <td>{{ques.OptionsOne}}</td>
+                  <td>{{ques.OptionsOneValue}}</td>
+                  <td>{{ques.OptionsTwo}}</td>
+                  <td>{{ques.OptionsTwoValue}}</td>
+                  <td>{{ques.OptionsThree}}</td>
+                  <td>{{ques.OptionsThreeValue}}</td>
+                  <td>{{ques.OptionsFour}}</td>
+                  <td>{{ques.OptionsFourValue}}</td>
+                  <td>{{ques.OptionsFive}}</td>
+                  <td>{{ques.OptionsFiveValue}}</td>
+                  <td>{{ques.OptionsSix}}</td>
+                  <td>{{ques.OptionsSixValue}}</td>
+
+                  <td>
+                    <a
+                      href="/delete_ques_marketing/{{ques.id}}"
+                      class="btn btn-danger"
+                      >Delete</a
+                    >
+                  </td>
+                  <td>
+                    <a
+                      class="btn btn-primary"
+                      href="/updatemarketing/{{ques.id}}"
+                      >Update</a
+                    >
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

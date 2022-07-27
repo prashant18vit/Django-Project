@@ -1,0 +1,82 @@
+{% extends 'base.html' %} {% block content %}{% load crispy_forms_tags %}
+
+<div class="col-md-6">
+  <div class="card card-body">
+    <form action="" method="POST">
+      {% csrf_token %} {{update_ques_form|crispy }}
+
+      <input
+        type="submit"
+        name="Submit"
+        value="Submit Changes"
+        class="btn btn-warning"
+      />
+    </form>
+  </div>
+</div>
+<br />
+<script
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+  crossorigin="anonymous"
+></script>
+<div>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>#</th>
+
+        <th>Domain</th>
+        <th>Priority</th>
+        <th>Question</th>
+        <th>Option 1</th>
+        <th>Option_1_Value</th>
+        <th>Option 2</th>
+        <th>Option_2_Value</th>
+        <th>Option 3</th>
+        <th>Option_3_Value</th>
+        <th>Option 4</th>
+        <th>Option_4_Value</th>
+        <th>Option 5</th>
+        <th>Option_5_Value</th>
+        <th>Option 6</th>
+        <th>Option_6_Value</th>
+        <th>Delete</th>
+        <th>Update</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% for ques in questionsForm %}
+      <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{ques.domainStrategy}}</td>
+        <td>{{ques.priorityStrategy}}</td>
+        <td>{{ques.questionsToAddStrategy}}</td>
+        <td>{{ques.OptionsOneStrategy}}</td>
+        <td>{{ques.OptionsOneValueStrategy}}</td>
+        <td>{{ques.OptionsTwoStrategy}}</td>
+        <td>{{ques.OptionsTwoValueStrategy}}</td>
+        <td>{{ques.OptionsThreeStrategy}}</td>
+        <td>{{ques.OptionsThreeValueStrategy}}</td>
+        <td>{{ques.OptionsFourStrategy}}</td>
+        <td>{{ques.OptionsFourValueStrategy}}</td>
+        <td>{{ques.OptionsFiveStrategy}}</td>
+        <td>{{ques.OptionsFiveValueStrategy}}</td>
+        <td>{{ques.OptionsSixStrategy}}</td>
+        <td>{{ques.OptionsSixValueStrategy}}</td>
+
+        <td>
+          <a href="/delete_ques_stra/{{ques.id}}" class="btn btn-danger"
+            >Delete</a
+          >
+        </td>
+        <td>
+          <a class="btn btn-primary" href="/updatestra/{{ques.id}}">Update</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endblock %}

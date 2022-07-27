@@ -1,0 +1,13 @@
+asgiref==3.4.1
+Django==3.2.5
+django-ckeditor==6.1.0
+django-crispy-forms==1.12.0
+django-js-asset==1.2.2
+mysqlclient==2.0.3
+pytz==2021.1
+sqlparse==0.4.1
+urllib3==1.25.8
+requests==2.22.0
+requests-html==0.10.0
+bs4==0.0.1
+

@@ -1,0 +1,234 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+
+<div class="card-deck p-3 ">
+  <div class = 'card text-white bg-primary mb-3'>
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Total Questions</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalQuestions}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </div>
+  <a class="card text-white bg-secondary mb-3" href = "StrategyHome">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Strategy</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalStrategy}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+<a class="card text-white bg-success mb-3" href ="PortfolioHome">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Portfolio</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totaPortfolio}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+</div>
+<div class="card-deck p-3">
+  <a class="card text-white bg-primary mb-3"  href = "SkillsHome">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body text-center">
+      <h2 class="card-title text-center">Skills</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalSkills}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+  <a class="card text-white bg-secondary mb-3" href = 'CustomersHome'>
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Customers</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalCustomers}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+<a class="card text-white bg-success mb-3" href = 'CompetitorsHome'>
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Competitors</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalCompetitors}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+</div><div class="card-deck p-3">
+  <a class="card text-white bg-primary mb-3"  href = "SalesHome">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Sales</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalSales}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+  <a class="card text-white bg-secondary mb-3" href = 'MarketingHome'>
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Marketing</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalMarketing}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+<a class="card text-white bg-success mb-3" href = "financeHome">
+    <img class="card-img-top" src="..." alt="Card image cap">
+    <div class="card-body">
+      <h2 class="card-title text-center">Finance</h2>
+      <br/>
+      <h3 class="card-text text-center">{{totalFinQues}}</h3>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Last updated 3 mins ago</small>
+    </div>
+  </a>
+</div>
+<br />
+{% comment %} 
+<div class="row">
+  <div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="total-questions">
+        <div class="card-header">
+          <h2 class="card-title">Finance</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{totalQuestions}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+  <a href = "StrategyHome">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="questions-Strategy">
+        <div class="card-header">
+          <h2 class="card-title">Strategy</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{totalStrategy}}</h3>
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+
+  <div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="questions-Skills">
+        <div class="card-header">
+          <h2 class="card-title">Skills</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="total-questions">
+        <div class="card-header">
+          <h2 class="card-title">Domain 3</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{totalQuestions}}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="questions-pending">
+        <div class="card-header">
+          <h2 class="card-title">Domain 4</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="questions-pending">
+        <div class="card-header">
+          <h2 class="card-title">Domain 5</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="questions-Skills">
+        <div class="card-header">
+          <h2 class="card-title">Domain 6</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="col">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="questions-pending">
+        <div class="card-header">
+          <h2 class="card-title">Domain 7</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title"></h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+    <div class = "col">
+    <a href = "financeHome">
+    <div class="col-md">
+      <div class="card text-center text-white mb-3" id="questions-pending">
+        <div class="card-header">
+          <h2 class="card-title">Finance</h2>
+        </div>
+        <div class="card-body">
+          <h3 class="card-title">{{totalFinQues}}</h3>  
+        </div>
+      </div>
+    </div>
+    </a>
+  </div>
+  </div>
+</div> {% endcomment %}
+{% endblock %}

@@ -1,0 +1,111 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1>strategy Questions</h1>
+<div id="question-cont"></div>
+<div id="spinner-box"></div>
+<div id="loading-box">
+  <button class="btn btn-warning" id="load-btn-pre">Previus</button>
+  <button class="btn btn-info" id="load-btn">Next</button>
+</div>
+<script>
+  const quesBox = document.getElementById("question-cont");
+  const spinnerBox = document.getElementById("spinner-box");
+  const loadbtn = document.getElementById("load-btn");
+  const loadingbox = document.getElementById("loading-box");
+  const loadprev = document.getElementById("load-btn-pre");
+  let visible = 1;
+  const handleGetData = (e) => {
+    e.preventDefault();
+    $.ajax({
+      type: "GET",
+      url: `/userLogin${visible}`,
+      success: function (response) {
+        //console.log(response.max_size);
+        maxSize = response.max_size;
+        const data = response.data;
+        data.map((post) => {
+          e.preventDefault();
+          console.log(post.priorityStrategy);
+          quesBox.innerHTML = `
+                                <form method = "POST" >         
+                                {% csrf_token %}       
+                                <div class="card-deck p-3 ">
+                                <div class="card text-white bg-primary mb-3">
+                                <div class="card-body">
+                                <br><h3>
+                                <input type = 'hidden' id="post.questionsToAddStrategy" name="Question" value="${post.questionsToAddStrategy}">${post.priorityStrategy}) ${post.questionsToAddStrategy}
+                                <br></h3>
+                                {% if post.OptionsOneStrategy != None %}<h1>ha</h1>{% endif %}
+                                <h6 class="d-flex">
+                                </div>
+                                <div class = 'p-4'>
+                                {% if post.OptionsOneStrategy != "null" %}
+                                  <input type="radio" id="post.OptionsOneStrategy" name="1_Option_ans" value="${post.OptionsOneStrategy}">
+                                   ${post.OptionsOneStrategy}
+                                {% endif %}
+                                <br/>
+                                <br>
+                                {% if post.OptionsTwoStrategy == null %}
+                                <input type="radio" id="post.OptionsTwoStrategy" name="1_Option_ans" value="${post.OptionsTwoStrategy}">
+                                ${post.OptionsTwoStrategy}
+                                {% endif %}
+                                <br>
+                                <br>
+                                {% if post.OptionsThreeStrategy == null %}
+                                <input type="radio" id="post.OptionsThreeStrategy" name="1_Option_ans" value="${post.OptionsThreeStrategy}">
+                                ${post.OptionsThreeStrategy}
+                                {% endif %}
+                                </>
+                                <br>
+                                <br>
+                                <div>
+                                {% if post.OptionsFourStrategy == null %}
+                                <input type="radio" id="post.OptionsFourStrategy" name="1_Option_ans" value="${post.OptionsFourStrategy}">
+                                ${post.OptionsFourStrategy}
+                                {% endif %}
+                                </div>
+                                <br>
+                                <div>
+                                {% if post.OptionsFiveStrategy == null %}
+                                <input type="radio" id="post.OptionsFiveStrategy" name="1_Option_ans" value="${post.OptionsFiveStrategy}">
+                                ${post.OptionsFiveStrategy}
+                                {% endif %}
+                                </div>
+                                <br>
+                                <div>
+                                {% if post.OptionsSixStrategy == null %}
+                                <input type="radio" id="post.OptionsSixStrategy" name="1_Option_ans" value="${post.OptionsSixStrategy}">
+                                ${post.OptionsSixStrategy}
+                                {% endif %}
+                                </div>
+                                </div>
+                              </h6></div></div></div>
+                              <button class="btn btn-info" id="load-btn" href = 'saveans'>Save</button>
+                              </form>`;
+        });
+
+        if (maxSize) {
+          quesBox.innerHTML = "<h1>Done Click for Next Domain</h1>";
+          console.log("done");
+        }
+      },
+      error: function (error) {
+        console.log(error);
+      },
+    });
+  };
+  handleGetData(e);
+
+  e.preventDefault();
+  loadbtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    visible = visible + 1;
+    handleGetData();
+  });
+  loadprev.addEventListener("click", (e) => {
+    e.preventDefault();
+    visible = visible - 1;
+    handleGetData();
+  });
+</script>
+{%endblock%}

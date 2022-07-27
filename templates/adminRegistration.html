@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+<div class="containter pt-4">
+  <div class="col-lg-5 shadow mx-auto p-0">
+    <div class="alert alert-success">
+      <h2>Register</h2>
+    </div>
+    <div class="p-4">
+      <form method="post" action="/adminRegistration/">
+        {% csrf_token %} {{ form }}
+        <hr />
+        <input class="btn btn-success" type="submit" value="Create Account" />
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
